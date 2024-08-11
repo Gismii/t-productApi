@@ -38,11 +38,17 @@ const CreateProductModal = ({ isOpen, onClose }) => {
       if (response.status === 201) {
         setSuccess('Produto criado com sucesso!');
         setError('');
-        // Limpa os campos do formulário
         setName('');
         setDescription('');
         setPrice('');
         setStock('');
+
+        setTimeout (() => {
+
+          setSuccess(' ');
+
+        }, 6000);
+        
       } else {
         setError('Falha ao criar o produto.');
       }
@@ -57,7 +63,7 @@ const CreateProductModal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Criar Produto</h2>
+        <h2>Cadastrar Produto</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
         <div>

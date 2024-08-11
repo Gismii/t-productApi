@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LogOut from '../logout/Logout'; 
 import './header.css';
 
 function Header() {
@@ -11,14 +12,11 @@ function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <a href="/home">MyLogo</a>
+        <a href="/home">t-alpha</a>
       </div>
       <nav className={`nav ${menuActive ? 'active' : ''}`}>
         <ul className={`nav-links ${menuActive ? 'active' : ''}`}>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">Produtos</a></li>
-          <li><a href="#services">Usuarios</a></li>
-          <li><a href="#contact">Sair</a></li>
+          <li><LogOut /></li> {/* Substitua o link de "Sair" pelo componente LogOut */}
         </ul>
       </nav>
       <div className="menu-icon" onClick={toggleMenu}>

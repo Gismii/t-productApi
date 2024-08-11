@@ -16,13 +16,14 @@ table {
   
   button {
     padding: 5px 10px;
-    background-color: #f44336;
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
+    
   }
   
   button:hover {
-    background-color: #d32f2f;
+    background-color: #0056b3;
   }
   

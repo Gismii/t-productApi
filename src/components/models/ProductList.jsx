@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../models/productList.css';
+import BtnCreateProduct from '../BtnCreateProduct';
+import UpdateProductModal from './UpdateProductModal'; 
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false); 
 
   useEffect(() => {
     fetchProducts();
@@ -48,7 +52,7 @@ const ProductList = () => {
       });
 
       if (response.status === 204) {
-        // Atualize a lista de produtos após a exclusão
+       
         setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
       } else {
         console.error('Falha ao deletar o produto:', response.status);
@@ -58,11 +62,24 @@ const ProductList = () => {
     }
   };
 
+  const openUpdateModal = (product) => {
+    setSelectedProduct(product);
+    setUpdateModalOpen(true);
+  };
+
+  const closeUpdateModal = () => {
+    setSelectedProduct(null);
+    setUpdateModalOpen(false);
+  };
+
   return (
     <div>
       <br />
       <br />
-      <h2>Product List</h2>
+      <br />
+      <BtnCreateProduct />
+      <br />
+      <h2>Lista de Produto</h2>
       <table>
         <thead>
           <tr>
@@ -85,6 +102,8 @@ const ProductList = () => {
                 <td>{product.stock}</td>
                 <td>
                   <button onClick={() => deleteProduct(product.id)}>Delete</button>
+                  
+                  <button onClick={() => openUpdateModal(product)}>Update</button>
                 </td>
               </tr>
             ))
@@ -95,6 +114,14 @@ const ProductList = () => {
           )}
         </tbody>
       </table>
+      {selectedProduct && (
+        <UpdateProductModal
+          isOpen={isUpdateModalOpen}
+          onClose={closeUpdateModal}
+          product={selectedProduct}
+          onProductUpdated={fetchProducts} 
+        />
+      )}
     </div>
   );
 };
