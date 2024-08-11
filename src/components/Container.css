@@ -1,0 +1,8 @@
+.container {
+  
+    max-width: 1200px; /* Define uma largura máxima */
+    margin: 0 auto; /* Centraliza o conteúdo */
+    padding: 0 20px; /* Adiciona um padding para dar espaço nas laterais */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura do container */
+  }
+  
